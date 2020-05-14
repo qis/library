@@ -1,0 +1,5 @@
+Source: library
+Version: 0.1.0
+Homepage: https://github.com/qis/library
+Description: C++ library project template.
+Build-Depends: fmt
