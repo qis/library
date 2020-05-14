@@ -25,7 +25,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE src PUBLIC
   $<INSTALL_INTERFACE:include>)
 
 # Dependencies
-find_package(fmt REQUIRED)
+find_package(fmt CONFIG REQUIRED)
 target_link_libraries(${PROJECT_NAME} PUBLIC fmt::fmt)
 
 find_package(Threads REQUIRED)
