@@ -11,8 +11,8 @@ configure_file(include/${PROJECT_NAME}/version.hpp.in
   ${CMAKE_CURRENT_BINARY_DIR}/include/${PROJECT_NAME}/version.hpp LF)
 
 # Sources
-file(GLOB_RECURSE headers CONFIGURE_DEPENDS include/*.hpp)
-file(GLOB_RECURSE sources CONFIGURE_DEPENDS src/${PROJECT_NAME}/*.[hc]pp)
+file(GLOB_RECURSE headers include/*.hpp)
+file(GLOB_RECURSE sources src/${PROJECT_NAME}/*.[hc]pp)
 
 # Library
 add_library(${PROJECT_NAME} STATIC ${headers} ${sources})
@@ -63,7 +63,7 @@ add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 # Benchmark
 if(NOT DISABLE_BENCHMARK)
-  file(GLOB_RECURSE benchmark_sources CONFIGURE_DEPENDS src/benchmark/*.[hc]pp)
+  file(GLOB_RECURSE benchmark_sources src/benchmark/*.[hc]pp)
   add_executable(benchmark EXCLUDE_FROM_ALL ${benchmark_sources})
   target_link_libraries(benchmark PRIVATE ${PROJECT_NAME})
 
@@ -73,7 +73,7 @@ endif()
 
 # Tests
 if(NOT DISABLE_TESTS)
-  file(GLOB_RECURSE tests_sources CONFIGURE_DEPENDS src/tests/*.[hc]pp)
+  file(GLOB_RECURSE tests_sources src/tests/*.[hc]pp)
   add_executable(tests EXCLUDE_FROM_ALL ${tests_sources})
   target_link_libraries(tests PRIVATE ${PROJECT_NAME})
 
@@ -89,10 +89,4 @@ endif()
 if(NOT DISABLE_MAIN)
   add_executable(main EXCLUDE_FROM_ALL src/main.cpp src/main.manifest)
   target_link_libraries(main PRIVATE ${PROJECT_NAME})
-endif()
-
-# Visual Studio
-set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-if(NOT DISABLE_MAIN)
-  set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT main)
 endif()
