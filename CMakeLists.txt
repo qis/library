@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 project(library VERSION 0.1.0 LANGUAGES CXX)
 
 # Options
@@ -30,11 +30,6 @@ target_link_libraries(${PROJECT_NAME} PUBLIC fmt::fmt)
 
 find_package(Threads REQUIRED)
 target_link_libraries(${PROJECT_NAME} PUBLIC Threads::Threads)
-
-if(CMAKE_CXX_COMPILER_ID STREQUAL GNU)
-  target_link_libraries(${PROJECT_NAME} PUBLIC stdc++fs)
-  target_link_options(${PROJECT_NAME} PUBLIC -static-libstdc++)
-endif()
 
 # Install
 install(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME})
