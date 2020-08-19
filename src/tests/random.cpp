@@ -1,6 +1,6 @@
-#include <catch.hpp>
+#include <gtest/gtest.h>
 #include <library/random.hpp>
 
-TEST_CASE("library::random") {
-  REQUIRE(!library::random().empty());
+TEST(library, random) {
+  ASSERT_FALSE(library::random().empty());
 }

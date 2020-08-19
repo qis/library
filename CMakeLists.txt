@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 project(library VERSION 0.1.0 LANGUAGES CXX)
 
 # Options
-option(DISABLE_BENCHMARK "Disable benchmark" OFF)
+option(DISABLE_BENCHMARKS "Disable benchmarks" OFF)
 option(DISABLE_TESTS "Disable tests" OFF)
 option(DISABLE_MAIN "Disable main (used for development)" OFF)
 
@@ -56,14 +56,14 @@ install(FILES
 
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
-# Benchmark
-if(NOT DISABLE_BENCHMARK)
-  file(GLOB_RECURSE benchmark_sources src/benchmark/*.[hc]pp)
-  add_executable(benchmark EXCLUDE_FROM_ALL ${benchmark_sources})
-  target_link_libraries(benchmark PRIVATE ${PROJECT_NAME})
+# Benchmarks
+if(NOT DISABLE_BENCHMARKS)
+  file(GLOB_RECURSE benchmarks_sources src/benchmarks/*.[hc]pp)
+  add_executable(benchmarks EXCLUDE_FROM_ALL ${benchmarks_sources})
+  target_link_libraries(benchmarks PRIVATE ${PROJECT_NAME})
 
   find_package(benchmark CONFIG REQUIRED)
-  target_link_libraries(benchmark PRIVATE benchmark::benchmark_main)
+  target_link_libraries(benchmarks PRIVATE benchmark::benchmark_main)
 endif()
 
 # Tests
@@ -72,12 +72,11 @@ if(NOT DISABLE_TESTS)
   add_executable(tests EXCLUDE_FROM_ALL ${tests_sources})
   target_link_libraries(tests PRIVATE ${PROJECT_NAME})
 
-  find_package(Catch2 CONFIG REQUIRED)
-  target_link_libraries(tests PRIVATE Catch2::Catch2)
+  find_package(GTest CONFIG REQUIRED)
+  target_link_libraries(tests PRIVATE GTest::gtest GTest::gtest_main)
 
-  include(CTest)
-  include(Catch)
-  catch_discover_tests(tests)
+  include(GoogleTest)
+  gtest_discover_tests(tests)
 endif()
 
 # Main

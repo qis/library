@@ -5,7 +5,7 @@ C++ library project template.
 See [qis/toolchains](https://github.com/qis/toolchains) for vcpkg setup instructions.
 
 ```sh
-vcpkg install benchmark catch2 fmt
+vcpkg install benchmark gtest fmt
 ```
 
 ## Build
