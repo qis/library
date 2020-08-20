@@ -65,6 +65,8 @@ endif()
 # Tests
 find_package(GTest CONFIG)
 if(GTest_FOUND)
+  enable_testing()
+
   file(GLOB_RECURSE tests_sources src/tests/*.[hc]pp)
   add_executable(tests EXCLUDE_FROM_ALL ${tests_sources} src/main.manifest)
   target_link_libraries(tests PRIVATE ${PROJECT_NAME} GTest::gtest GTest::gtest_main)
