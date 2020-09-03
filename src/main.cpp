@@ -1,6 +1,7 @@
 #include <library/random.hpp>
 #include <cstdio>
 
-int main() {
+int main()
+{
   std::puts(library::random().data());
 }
