@@ -1,13 +1,8 @@
 vcpkg_fail_port_install(ON_TARGET "UWP")
 vcpkg_check_linkage(ONLY_STATIC_LIBRARY)
 
-vcpkg_configure_cmake(
-  SOURCE_PATH ${CURRENT_PORT_DIR}
-  PREFER_NINJA
-  OPTIONS
-    -DDISABLE_MAIN=ON
-  OPTIONS_DEBUG
-    -DINSTALL_HEADERS=OFF)
+vcpkg_configure_cmake(SOURCE_PATH ${CURRENT_PORT_DIR}
+  PREFER_NINJA OPTIONS_DEBUG -DINSTALL_HEADERS=OFF)
 
 vcpkg_install_cmake()
 vcpkg_fixup_cmake_targets(CONFIG_PATH lib/cmake/${PORT})
