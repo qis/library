@@ -1,0 +1,12 @@
+{
+  "name": "library",
+  "version": "0.1.0",
+  "description": "C++ library project template",
+  "homepage": "https://github.com/qis/library",
+  "license": "BSL-1.0",
+  "dependencies": [
+    "benchmark",
+    "doctest",
+    "fmt"
+  ]
+}
