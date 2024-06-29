@@ -114,5 +114,18 @@ int main() {
 }
 ```
 
+## Template
+Use template to create a new project.
+
+1. Update `project` in [CMakeLists.txt](CMakeLists.txt).
+2. Update `Project Headers` in [.clang-format](.clang-format).
+3. Update info and dependencies in [vcpkg.json](vcpkg.json).
+4. Update dependencies in [res/config.cmake.in](res/config.cmake.in).
+5. Update [vcpkg-configuration.json](vcpkg-configuration.json) with `vcpkg x-update-baseline`.
+6. Rename [include/library](include/library), [include/library.hpp](include/library.hpp)
+   and [src/library](src/library) to new project name.
+7. Update sources in [include](include) and [src](src).
+8. Update project license in [license.txt](license.txt).
+
 [vsc]: https://visualstudio.microsoft.com/vs/community
 [nbs]: https://github.com/ninja-build/ninja/releases
