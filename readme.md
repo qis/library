@@ -70,7 +70,7 @@ make clean
 Add library as git submodule to your project.
 
 ```sh
-git submodule add git@github.com:qis/library third_party/library
+git submodule add https://github.com/qis/library third_party/library
 ```
 
 Add library as a vcpkg overlay to your `vcpkg-configuration.json` file.
